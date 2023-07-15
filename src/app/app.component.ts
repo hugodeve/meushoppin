@@ -1,23 +1,27 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, NavigationEnd } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Home', url: '/folder/home', icon: 'home' },
-    { title: 'Loja', url: '/folder/loja', icon: 'cart' },
-    { title: 'Sobre Nós', url: '/folder/sobrenos', icon: 'layers' },
-    { title: 'Minha Conta ', url: '/folder/minha-conta', icon: 'person' },
+  currentUrl: string;
 
+  pages = [
+    { title: 'Home', url: '/home', icon: 'home' },
+    { title: 'Shop', url: '/shop', icon: 'basket' },
+    { title: 'About Us', url: '/about-us', icon: 'information-circle' },
+    { title: 'My Account', url: '/my-account', icon: 'person' }
   ];
-  public folder: string;
-  public products: any[] = []; // Variable para almacenar los productos
 
-  constructor(private http: HttpClient) {
-    this.folder = 'Home'; 
-   
+  constructor(private router: Router) {
+    this.currentUrl = '';
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.url;
+      }
+    });
   }
 }

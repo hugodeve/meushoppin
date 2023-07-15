@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Shop</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Shop</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong class="capitalize">{{ shop }}</strong>
+    <p>Explora los productos disponibles en la tienda.</p>
+    <app-product
+      *ngFor="let product of products"
+      [product]="product"
+      (productClicked)="navigateToProductDetails(product.id)"
+    ></app-product>
+  </div>
+</ion-content>
