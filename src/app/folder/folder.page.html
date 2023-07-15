@@ -27,14 +27,21 @@
     <div id="container">
       <strong class="capitalize">{{ folder }}</strong>
       <p>Explora los productos disponibles en la tienda.</p>
-      
       <ion-list>
-        <ion-item>
-          <ion-label>Produtos</ion-label>
+        <ion-item  *ngFor="let product of products" (click)="navigateToProductDetails(product.id)">
+          <ion-thumbnail slot="start">
+            <img *ngIf="product.images && product.images.length > 0" [src]="product.images[0].src" alt="Product Image">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.price }}</p>
+            <p>{{ product.description }}</p>
+          </ion-label>
         </ion-item>
       </ion-list>
     </div>
   </ng-container>
+  
 
 
   <ng-container *ngIf="folder === 'sobrenos'">
