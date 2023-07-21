@@ -12,12 +12,13 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ shop }}</strong>
+    <strong class="capitalize">Shop</strong>
     <p>Explora los productos disponibles en la tienda.</p>
-    <app-product
-      *ngFor="let product of products"
-      [product]="product"
-      (productClicked)="navigateToProductDetails(product.id)"
-    ></app-product>
+    <ion-list>
+      <ion-item *ngFor="let product of products" (click)="navigateToProductDetails(product.id)">
+        <ion-label>{{ product.name }}</ion-label>
+        <ion-label slot="end">{{ product.price }}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
